@@ -96,12 +96,20 @@ namespace p1
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            logname = "log-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".txt";
-            using (StreamWriter objWriter = new StreamWriter(logname))
+            try
             {
-                objWriter.Write(txt_left.Text);
-                MessageBox.Show("Log fájl mentése megtörtént: " + logname);
+                logname = "log-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".txt";
+                using (StreamWriter objWriter = new StreamWriter(logname))
+                {
+                    objWriter.Write(txt_left.Text);
+                    MessageBox.Show("Log fájl mentése megtörtént: " + logname);
+                }
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Log fájl mentése mentése sikertelen! HIBA: " + ex.Message);
+            }
+            
         }
         #endregion
     }
